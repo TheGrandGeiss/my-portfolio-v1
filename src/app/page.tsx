@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import {
-  Github,
   ExternalLink,
   Mail,
   Terminal,
@@ -55,7 +54,7 @@ export default function Home() {
             href='https://github.com/TheGrandGeiss'
             target='_blank'
             className='text-gray-400 hover:text-white transition-colors flex items-center gap-2'>
-            <Github size={20} />{' '}
+            <BsGithub size={20} />{' '}
             <span className='font-mono text-sm'>@TheGrandGeiss</span>
           </Link>
           <Link
