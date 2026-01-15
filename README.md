@@ -74,6 +74,3 @@ Email: [Your Email Here]
 Built with ❤️ in Nigeria.
 
 
-### Don't forget:
-1.  **Update the "Live Demo" link** to your actual Vercel URL.
-2.  **Add the screenshot:** Once you deploy, take a screenshot, upload it to GitHub Issues (like we did before), and replace the `via.placeholder.com` link on line 3.
