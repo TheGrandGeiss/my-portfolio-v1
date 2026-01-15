@@ -14,6 +14,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import morphify from '@/assets/morphify.png';
+import { BsGithub } from 'react-icons/bs';
 
 export default function Home() {
   return (
@@ -150,7 +151,7 @@ export default function Home() {
                   href='https://github.com/TheGrandGeiss/Morphify.ai'
                   target='_blank'
                   className='flex items-center gap-2 text-white border border-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-800 transition-colors'>
-                  <Github size={16} /> View Code
+                  <BsGithub size={16} /> View Code
                 </Link>
               </div>
             </div>
