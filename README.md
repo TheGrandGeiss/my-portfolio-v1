@@ -69,7 +69,7 @@ Ebenebe Emmanuel Chidera Fullstack Engineer
 
 GitHub: @TheGrandGeiss
 
-Email: [Your Email Here]
+Email: ebenebechidera3@gmail.com
 
 Built with ❤️ in Nigeria.
 
