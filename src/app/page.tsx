@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   ExternalLink,
   Mail,
@@ -9,169 +9,337 @@ import {
   Layout,
   Server,
   Cpu,
+  Code2,
+  Sparkles,
+  ArrowUpRight,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import morphify from '@/assets/morphify.png';
-import { BsGithub } from 'react-icons/bs';
+import velox from '@/assets/velox.png';
+import { BsGithub, BsTwitterX } from 'react-icons/bs';
+
+// Animation Variants
+// Animation Variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 export default function Home() {
   return (
-    <main className='min-h-screen max-w-5xl mx-auto px-6 py-20 font-sans selection:bg-purple-500/30'>
-      {/* --- HERO SECTION --- */}
-      <section className='mb-32 space-y-8'>
+    <main className='min-h-screen bg-[#030303] text-gray-200 font-sans selection:bg-purple-500/30 relative overflow-hidden'>
+      {/* --- BACKGROUND EFFECTS --- */}
+      <div className='fixed inset-0 z-0 pointer-events-none'>
+        <div className='absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[120px]' />
+        <div className='absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 rounded-full blur-[120px]' />
+        <div className='absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size[24px_24px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]' />
+      </div>
+
+      <div className='max-w-6xl mx-auto px-6 py-24 relative z-10'>
+        {/* --- NAV PILL --- */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}>
-          <div className='flex items-center gap-3 text-purple-400 font-mono text-sm mb-4'>
-            <span className='relative flex h-3 w-3'>
-              <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75'></span>
-              <span className='relative inline-flex rounded-full h-3 w-3 bg-purple-500'></span>
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className='flex justify-between items-center mb-24'>
+          <div className='text-xl font-bold font-space tracking-tight text-white flex items-center gap-2'>
+            <div className='w-8 h-8 bg-linear-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center text-xs'>
+              EC
+            </div>
+            <span>Chidera.</span>
+          </div>
+          <div className='flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-emerald-400'>
+            <div className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse' />
+            Open to Work
+          </div>
+        </motion.div>
+
+        {/* --- HERO SECTION --- */}
+        <motion.section
+          initial='hidden'
+          animate='visible'
+          variants={staggerContainer}
+          className='mb-32'>
+          <motion.div
+            variants={fadeInUp}
+            className='relative inline-block mb-4'>
+            <span className='absolute -inset-1 rounded-lg bg-linear-to-r from-purple-600 to-pink-600 opacity-20 blur-lg'></span>
+            <span className='relative px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-purple-300 flex items-center gap-2'>
+              <Sparkles size={14} /> Fullstack Engineer
             </span>
-            Available for work
+          </motion.div>
+
+          <motion.h1
+            variants={fadeInUp}
+            className='text-6xl md:text-8xl font-bold font-space tracking-tight text-white mb-8 leading-[0.9]'>
+            Building the <br />
+            <span className='text-transparent bg-clip-text bg-linear-to-r from-white via-white to-gray-500'>
+              Next Generation
+            </span>
+            <br /> of Web Apps.
+          </motion.h1>
+
+          <motion.p
+            variants={fadeInUp}
+            className='text-xl text-gray-400 max-w-2xl leading-relaxed mb-10'>
+            I’m <b>Ebenebe Emmanuel Chidera</b>. I engineer pixel-perfect,
+            scalable applications using
+            <span className='text-white'> Next.js</span> and{' '}
+            <span className='text-white'>Modern Architecture</span>. Bridging
+            the gap between complex backends and fluid UI.
+          </motion.p>
+
+          <motion.div
+            variants={fadeInUp}
+            className='flex gap-4'>
+            <Link
+              href='mailto:ebenebechidera3@gmail.com'
+              className='px-6 py-3 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition-colors flex items-center gap-2'>
+              <Mail size={18} /> Let's Talk
+            </Link>
+            <Link
+              href='https://github.com/TheGrandGeiss'
+              target='_blank'
+              className='px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2'>
+              <BsGithub size={18} /> GitHub
+            </Link>
+            <Link
+              href='https://x.com/ChideraEbenebe'
+              target='_blank'
+              className='px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2'>
+              <BsTwitterX size={18} /> Twitter | X
+            </Link>
+          </motion.div>
+        </motion.section>
+
+        {/* --- TECH STACK GRID --- */}
+        <motion.section
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
+          variants={staggerContainer}
+          className='mb-40'>
+          <motion.h2
+            variants={fadeInUp}
+            className='text-sm font-mono text-gray-500 mb-8 uppercase tracking-widest'>
+            Core Technologies
+          </motion.h2>
+
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
+            {[
+              {
+                icon: Layout,
+                name: 'Next.js 15',
+                color: 'group-hover:text-white',
+              },
+              {
+                icon: Terminal,
+                name: 'TypeScript',
+                color: 'group-hover:text-blue-400',
+              },
+              {
+                icon: Server,
+                name: 'Auth.js v5',
+                color: 'group-hover:text-green-400',
+              },
+              {
+                icon: Database,
+                name: 'Prisma ORM',
+                color: 'group-hover:text-teal-400',
+              },
+              {
+                icon: Database,
+                name: 'MongoDB',
+                color: 'group-hover:text-green-500',
+              },
+              {
+                icon: Cpu,
+                name: 'Tailwind CSS',
+                color: 'group-hover:text-cyan-400',
+              },
+              {
+                icon: Code2,
+                name: 'React Server',
+                color: 'group-hover:text-blue-300',
+              },
+              {
+                icon: Sparkles,
+                name: 'Framer Motion',
+                color: 'group-hover:text-pink-400',
+              },
+            ].map((tech, i) => (
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                className='group p-4 rounded-xl bg-white/5 border border-white/5 hover:border-white/20 transition-all hover:bg-white/10 cursor-default relative overflow-hidden'>
+                <div className='absolute inset-0 bg-linear-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity' />
+                <tech.icon
+                  className={`w-8 h-8 text-gray-500 mb-3 transition-colors ${tech.color}`}
+                />
+                <h3 className='font-medium text-gray-200'>{tech.name}</h3>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* --- FEATURED WORK --- */}
+        <section className='mb-32'>
+          <div className='flex items-end justify-between mb-12'>
+            <h2 className='text-4xl font-space font-bold text-white'>
+              Selected Work
+            </h2>
+            <span className='hidden md:block h-px flex-1 bg-gray-800 mx-8 relative -top-2.5' />
+            <Link
+              href='https://github.com/TheGrandGeiss'
+              className='text-sm font-mono text-purple-400 hover:text-purple-300 flex items-center gap-1'>
+              View All Repos <ArrowUpRight size={14} />
+            </Link>
           </div>
 
-          <h1 className='text-5xl md:text-7xl font-bold font-space tracking-tight text-white mb-6'>
-            Ebenebe Emmanuel <span className='text-gray-500'>Chidera</span>
-          </h1>
-
-          <p className='text-xl text-gray-400 max-w-2xl leading-relaxed'>
-            Fullstack Engineer focused on results. I help businesses scale by
-            building robust, high-performance web applications using
-            <span className='text-white font-medium'> Next.js</span> and
-            <span className='text-white font-medium'> Modern Architecture</span>
-          </p>
-        </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className='flex gap-6'>
-          <Link
-            href='https://github.com/TheGrandGeiss'
-            target='_blank'
-            className='text-gray-400 hover:text-white transition-colors flex items-center gap-2'>
-            <BsGithub size={20} />{' '}
-            <span className='font-mono text-sm'>@TheGrandGeiss</span>
-          </Link>
-          <Link
-            href='mailto:ebenebechidera3@gmail.com'
-            className='text-gray-400 hover:text-white transition-colors flex items-center gap-2'>
-            <Mail size={20} />{' '}
-            <span className='font-mono text-sm'>Contact Me</span>
-          </Link>
-        </motion.div>
-      </section>
-
-      {/* --- TECH STACK --- */}
-      <section className='mb-32'>
-        <h2 className='text-2xl font-space font-bold text-white mb-8 border-l-4 border-purple-500 pl-4'>
-          Engineering Stack
-        </h2>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-          {[
-            { icon: Layout, name: 'Next.js ', sub: 'App Router & SSR' },
-            { icon: Layout, name: 'React', sub: 'Server Components' },
-            { icon: Terminal, name: 'TypeScript', sub: 'Strict Typing' },
-            { icon: Server, name: 'Auth.js (v5)', sub: 'Secure Auth' },
-            { icon: Database, name: 'Prisma', sub: 'ORM' },
-            { icon: Database, name: 'MongoDB', sub: 'NoSQL Database' },
-            { icon: Cpu, name: 'Tailwind CSS', sub: 'Design System' },
-            { icon: Server, name: 'Firebase', sub: 'Realtime DB' },
-          ].map((tech, i) => (
-            <div
-              key={i}
-              className='p-4 border border-gray-800 rounded-lg hover:border-purple-500/50 hover:bg-gray-900/50 transition-all group'>
-              <tech.icon
-                className='text-gray-500 group-hover:text-purple-400 mb-2'
-                size={24}
-              />
-              <div className='font-bold text-gray-200'>{tech.name}</div>
-              <div className='text-xs text-gray-500'>{tech.sub}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- FEATURED PROJECT (MORPHIFY) --- */}
-      <section className='mb-32'>
-        <h2 className='text-2xl font-space font-bold text-white mb-8 border-l-4 border-purple-500 pl-4'>
-          Featured Work
-        </h2>
-
-        <div className='border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/20'>
-          <div className='grid md:grid-cols-2 gap-8'>
-            {/* Left: Content */}
-            <div className='p-8 flex flex-col justify-center'>
-              <div className='flex justify-between items-start mb-4'>
-                <h3 className='text-3xl font-bold text-white font-space'>
-                  Morphify
-                </h3>
-                <span className='px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs font-mono border border-purple-500/20'>
-                  AI SaaS
-                </span>
+          <div className='space-y-24'>
+            {/* Morphify Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className='group relative grid md:grid-cols-2 gap-8 items-center'>
+              <div className='order-2 md:order-1 relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900 aspect-video'>
+                <div className='absolute inset-0 bg-purple-500/20 z-10 group-hover:bg-transparent transition-colors duration-500' />
+                <Image
+                  src={morphify}
+                  alt='Morphify Project'
+                  fill
+                  className='object-cover transition-transform duration-700 group-hover:scale-105'
+                />
               </div>
 
-              <p className='text-gray-400 mb-6 leading-relaxed'>
-                An intelligent SaaS platform for AI-driven image manipulation.
-                Integrates generative AI to offer background removal, generative
-                fill, and object recoloring. Features secure authentication and
-                a robust credit system.
-              </p>
-
-              <div className='flex flex-wrap gap-2 mb-8'>
-                {[
-                  'Next.js',
-                  'Better-Auth',
-                  'Prisma',
-                  'MongoDB',
-                  'Tailwind',
-                  'Stripe',
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className='text-xs text-gray-300 bg-gray-800 px-2 py-1 rounded'>
-                    {tag}
+              <div className='order-1 md:order-2 space-y-6'>
+                <div className='flex items-center gap-3'>
+                  <h3 className='text-3xl font-bold text-white'>Morphify</h3>
+                  <span className='px-2 py-1 bg-purple-500/20 text-purple-300 text-xs rounded border border-purple-500/30'>
+                    AI SaaS
                   </span>
-                ))}
+                </div>
+                <p className='text-gray-400 leading-relaxed text-lg'>
+                  An intelligent SaaS platform for AI-driven image manipulation.
+                  Users can remove backgrounds, generative fill, and recolor
+                  objects in seconds. Built with a credit system and secure
+                  auth.
+                </p>
+                <div className='flex flex-wrap gap-2 text-sm font-mono text-gray-500'>
+                  <span>Next.js 15</span> • <span>Prisma</span> •{' '}
+                  <span>Stripe</span> • <span>Better-Auth</span>
+                </div>
+                <div className='flex gap-4 pt-2'>
+                  <Link
+                    href='https://morphify-app.vercel.app'
+                    target='_blank'
+                    className='text-white hover:text-purple-400 font-medium flex items-center gap-2 transition-colors'>
+                    <ExternalLink size={18} /> Live Demo
+                  </Link>
+                  <Link
+                    href='https://github.com/TheGrandGeiss/Morphify.ai'
+                    target='_blank'
+                    className='text-gray-500 hover:text-white flex items-center gap-2 transition-colors'>
+                    <BsGithub size={18} /> Source Code
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Velox Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className='group relative grid md:grid-cols-2 gap-8 items-center'>
+              <div className='space-y-6'>
+                <div className='flex items-center gap-3'>
+                  <h3 className='text-3xl font-bold text-white'>Velox.ai</h3>
+                  <span className='px-2 py-1 bg-green-500/20 text-green-300 text-xs rounded border border-green-500/30'>
+                    AI Agent
+                  </span>
+                </div>
+                <p className='text-gray-400 leading-relaxed text-lg'>
+                  Natural language scheduling assistant. Forget date pickers,
+                  just type "Lunch with Sarah tomorrow at 2pm" and Velox handles
+                  the conflict detection and Google Calendar syncing
+                  automatically.
+                </p>
+                <div className='flex flex-wrap gap-2 text-sm font-mono text-gray-500'>
+                  <span>Gemini SDK</span> • <span>MongoDB</span> •{' '}
+                  <span>Tailwind</span> • <span>NLP</span>
+                </div>
+                <div className='flex gap-4 pt-2'>
+                  <Link
+                    href='https://velox-ai-psi.vercel.app'
+                    target='_blank'
+                    className='text-white hover:text-green-400 font-medium flex items-center gap-2 transition-colors'>
+                    <ExternalLink size={18} /> Live Demo
+                  </Link>
+                  <Link
+                    href='https://github.com/TheGrandGeiss/velox-ai'
+                    target='_blank'
+                    className='text-gray-500 hover:text-white flex items-center gap-2 transition-colors'>
+                    <BsGithub size={18} /> Source Code
+                  </Link>
+                </div>
               </div>
 
-              <div className='flex gap-4'>
-                <Link
-                  href='https://morphify-app.vercel.app'
-                  target='_blank'
-                  className='flex items-center gap-2 bg-white text-black px-4 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors'>
-                  <ExternalLink size={16} /> Live Demo
-                </Link>
-                <Link
-                  href='https://github.com/TheGrandGeiss/Morphify.ai'
-                  target='_blank'
-                  className='flex items-center gap-2 text-white border border-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-800 transition-colors'>
-                  <BsGithub size={16} /> View Code
-                </Link>
+              <div className='relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900 aspect-video'>
+                <div className='absolute inset-0 bg-green-500/20 z-10 group-hover:bg-transparent transition-colors duration-500' />
+                <Image
+                  src={velox}
+                  alt='Velox Project'
+                  fill
+                  className='object-cover transition-transform duration-700 group-hover:scale-105'
+                />
               </div>
-            </div>
-
-            {/* Right: Visual Placeholder */}
-            <div className='bg-gray-800/50 min-h-75 md:min-h-full flex items-center justify-center border-l border-gray-800 relative group overflow-hidden'>
-              {/* Replace this div with an <Image /> component of your screenshot later */}
-              <Image
-                src={morphify}
-                alt='morphify landing page'
-              />
-            </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* --- FOOTER --- */}
-      <footer className='border-t border-gray-800 pt-8 text-center text-gray-500 text-sm'>
-        <p>© {new Date().getFullYear()} Ebenebe Emmanuel Chidera.</p>
-        <p className='mt-2 font-mono'>Built by @TheGrandGeiss</p>
-      </footer>
+        {/* --- FOOTER --- */}
+        <footer className='border-t border-white/10 pt-12 pb-8 text-center'>
+          <p className='text-gray-500 mb-4'>
+            Designed & Engineered by{' '}
+            <span className='text-white'>@TheGrandGeiss</span>
+          </p>
+          <div className='flex justify-center gap-6 text-gray-600'>
+            <Link
+              href='https://github.com/TheGrandGeiss'
+              className='hover:text-white transition-colors'>
+              GitHub
+            </Link>
+            <Link
+              href='mailto:ebenebechidera3@gmail.com'
+              className='hover:text-white transition-colors'>
+              Email
+            </Link>
+            <Link
+              href='#'
+              className='hover:text-white transition-colors'>
+              Twitter
+            </Link>
+          </div>
+        </footer>
+      </div>
     </main>
   );
 }
